@@ -4,3 +4,4 @@ def saudacao(nome, periodo="manhã"):
 saudacao('Nickolas')
 saudacao('Nickolas', 'tarde')
 saudacao('Nickolas', 'noite')
+saudacao('Nickolas', 'dia')
