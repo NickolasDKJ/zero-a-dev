@@ -25,4 +25,10 @@ def media_turma(turma):
     return total / len(turma)
 print('Média da turma:', media_turma(turma))
 
-    
+def salvar_turma(turma, nome_arquivo):
+    with open(nome_arquivo, 'w') as arquivo:
+        for aluno in turma:
+            arquivo.write(f'{aluno["nome"]} - {aluno["nota"]} - {situacao(aluno["nota"])}\n')
+salvar_turma(turma, 'turma.txt')
+print("Turma salva no arquivo 'turma.txt!'")
+      
