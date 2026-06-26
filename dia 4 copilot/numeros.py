@@ -25,10 +25,28 @@ def media_turma(alunos):
           total += aluno["nota"]
      return total / len(alunos)
 
+
 def menu_adicionar():
      nome = input("Nome: ")
      nota = float(input("Nota: "))
      adicionar_aluno(nome, nota)
+     salvar_dados()
+
+import json
+
+def salvar_dados():
+     with open("alunos.json", "w") as arquivo:
+          json.dump(alunos, arquivo)
+
+def carregar_dados():
+     global alunos
+     try:
+          with open("alunos.json", "r") as arquivo:
+               alunos = json.load(arquivo)
+     except FileNotFoundError:
+          alunos = []
+
+carregar_dados()
 
 def menu_listar():
      if len(alunos) == 0:
@@ -60,6 +78,7 @@ def menu_editar_nota():
               print("Nota atualizada com sucesso!")
               return
     print("Aluno não encontrado. Verifique o nome digitado.")
+    salvar_dados()
 
 def menu_remover():
      nome_procurado = input("Digite o nome do aluno: ")
@@ -70,6 +89,7 @@ def menu_remover():
                print("Aluno removido com sucesso!")
                return
      print("Aluno não encontrado")
+     salvar_dados()
 
 opcao = ""
 
